@@ -30,7 +30,7 @@ In order to simplify the calculations, the entire grid is not stored. Instead, o
 `cell.js`: The class responsible for containing state information for a single cell, and performing neighbor calculations.
 `life.js`: The logic responsible for calculating the next state from the current state.
 
-![GoGoL page wireframe](./wireframes/gogol.png)
+![GoGoL page wireframe](./docs/wireframes/gogol.png)
 
 ## Rules
 
