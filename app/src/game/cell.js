@@ -24,3 +24,6 @@ class Cell {
 }
 
 export default Cell;
+
+// for testing
+window.Cell = Cell;
