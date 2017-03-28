@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "webpack"
+    "postinstall": "webpack",
+    "start": "live-server --no-browser"
   },
   "repository": {
     "type": "git",
@@ -35,5 +36,8 @@
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
     "webpack": "^2.3.2"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.0"
   }
 }
