@@ -15,3 +15,5 @@ const gridReducer = (state = defaultState, action) => {
       return state;
   }
 };
+
+export default gridReducer;
