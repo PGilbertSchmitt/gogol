@@ -7,11 +7,6 @@ const mapStateToProps = state => ({
   grid: state.grid
 });
 
-const mapDispatchToProps = dispatch => ({
-  update: grid => dispatch(receiveGrid(grid))
-});
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Grid);
