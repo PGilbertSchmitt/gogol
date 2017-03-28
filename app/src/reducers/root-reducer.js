@@ -1,3 +1,7 @@
 import { combineReducers } from 'redux';
 
-export default combineReducers({});
+import gridReducer from './grid-reducer';
+
+export default combineReducers({
+  grid: gridReducer
+});
