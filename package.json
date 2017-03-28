@@ -35,7 +35,8 @@
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
-    "webpack": "^2.3.2"
+    "webpack": "^2.3.2",
+    "xxhashjs": "^0.2.1"
   },
   "devDependencies": {
     "live-server": "^1.2.0"
