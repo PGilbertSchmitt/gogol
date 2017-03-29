@@ -75,13 +75,19 @@ class Controls extends Component {
               name="frame-slider"
               type="range"
               min="1"
-              max="100" />
+              max="100"
+              defaultValue="1"  />
           </label>
-          <label>Play/Pause
-            <input
-              onClick={this.togglePlay}
-              type="button" />
-          </label>
+          <br />
+          <input
+            onClick={this.togglePlay}
+            type="button"
+            value="Play/Pause" />
+          <br />
+          <input
+            onClick={this.props.cleanGrid}
+            type="button"
+            value="Reset Grid" />
         </form>
       </div>
     );

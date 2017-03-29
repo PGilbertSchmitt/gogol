@@ -5,6 +5,7 @@ import {
   receiveControls,
   resetControls
 } from '../../actions/control-actions';
+import { cleanGrid } from '../../actions/grid-actions';
 
 const mapStateToProps = ({ controls }) => ({
   controls
@@ -12,7 +13,8 @@ const mapStateToProps = ({ controls }) => ({
 
 const mapDispatchToProps = dispatch => ({
   setControls: controls => dispatch(receiveControls(controls)),
-  resetControls: () => dispatch(resetControls())
+  resetControls: () => dispatch(resetControls()),
+  cleanGrid: () => dispatch(cleanGrid())
 });
 
 export default connect(
