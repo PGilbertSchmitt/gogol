@@ -3,7 +3,7 @@ import {
   CLEAN_GRID
 } from '../actions/grid-actions';
 
-const defaultState = { grid: new Set };
+const defaultState = new Map;
 
 const gridReducer = (state = defaultState, action) => {
   switch (action.type) {
