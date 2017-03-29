@@ -3,18 +3,9 @@ import {
   RESET_CONTROLS
 } from '../actions/control-actions';
 
-const defaultState = {
-  frameTime: 2.0, // in seconds
-  rules: { // Starting off with Conway's version by default
-    birth: [3],
-    survive: [2, 3],
-    evolve: []
-  },
-  numStates: 2,
-  playing: false
-};
+import defaultState from '../util/defaultControls';
 
-const controlReducer = (state, action) => {
+const controlReducer = (state = defaultState, action) => {
   Object.freeze(state);
 
   switch (action.type) {
