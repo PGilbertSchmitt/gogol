@@ -11,3 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     root
   );
 });
+
+// For testing
+window.store = store;

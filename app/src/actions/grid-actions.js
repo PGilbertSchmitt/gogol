@@ -9,3 +9,5 @@ export const receiveGrid = grid => ({
 export const cleanGrid = () => ({
   type: CLEAN_GRID
 });
+
+window.receiveGrid = receiveGrid;
