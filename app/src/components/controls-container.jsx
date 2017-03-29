@@ -11,8 +11,8 @@ const mapStateToProps = ({ controls }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  update: controls => dispatch(receiveControls(controls)),
-  reset: () => dispatch(resetControls())
+  setContols: controls => dispatch(receiveControls(controls)),
+  resetControls: () => dispatch(resetControls())
 });
 
 export default connect(
