@@ -2,10 +2,14 @@ import React from 'react';
 import { Provider } from 'react-redux';
 
 import Grid from '../components/grid-container';
+import Controls from '../components/controls-container';
 
 const Root = ({ store }) => (
   <Provider store={store}>
-    <Grid />
+    <div>
+      <Controls />
+      <Grid />
+    </ div>
   </Provider>
 );
 
