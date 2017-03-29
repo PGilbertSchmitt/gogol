@@ -28,12 +28,10 @@ class Grid extends Component {
   }
 
   draw() {
-    // console.log("drawing");
-
-    const viewRect = document.getElementById("grid-canvas").getBoundingClientRect();
+    const viewRect = document.getElementById("grid-canvas")
+        .getBoundingClientRect();
     this.ctx.clearRect(0, 0, viewRect.width, viewRect.height);
 
-    console.log(viewRect);
     const centerX = viewRect.width / 2 - (this.cellSize / 2 + 1);
     const centerY = viewRect.height / 2 - (this.cellSize / 2 + 1);
     this.setState({ centerX, centerY });
@@ -51,7 +49,6 @@ class Grid extends Component {
     this.state.grid.forEach(cell => {
       let x = (cell.x * this.cellSize) + centerX;
       let y = (cell.y * this.cellSize) + centerY;
-      console.log(`x: ${x}, y: ${y}`);
       this.drawCell(x, y);
     });
   }
@@ -67,7 +64,6 @@ class Grid extends Component {
     const ctx = this.ctx;
 
     ctx.beginPath();
-    ctx.fillStyle = 'green';
     ctx.lineWidth = 0;
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
@@ -79,9 +75,12 @@ class Grid extends Component {
     const xOffset = left + (width / 2) - (this.cellSize / 2 + 1);
     const yOffset = top + (height / 2) - (this.cellSize / 2 + 1);
 
-    let mouseX = Math.floor((e.clientX - xOffset) / this.cellSize);
-    let mouseY = Math.floor((e.clientY - yOffset) / this.cellSize);
+    let mouseX = Math.floor((e.clientX - xOffset - 2) / this.cellSize);
+    let mouseY = Math.floor((e.clientY - yOffset - 2) / this.cellSize);
     console.log(`x: ${mouseX}, y: ${mouseY}`);
+
+    const cell = new Cell(mouseX, mouseY);
+    this.props.toggle(cell);
   }
 
   render() {
