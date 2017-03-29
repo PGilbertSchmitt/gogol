@@ -7,13 +7,43 @@
 
 import React, { Component } from 'react';
 
+import defaultControls from '../../util/defaultControls';
+
 class Runner extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      grid: new Map,
+      controls: defaultControls,
+      intervalHandler: null
+    }
   }
 
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps({ grid, controls }) {
     console.log("Runner received update");
+    this.setState({
+      grid,
+      controls
+    });
+  }
+
+  componentDidUpdate() {
+    const controls = this.state.controls;
+    
+    // Play / Pause
+    const handler = this.state.intervalHandler;
+    if (!controls.playing && handler) {
+      window.clearInterval(handler);
+      this.setState({ intervalHandler: null });
+    }
+    if (controls.playing && !handler) {
+      const newHandler = window.setInterval(this.update, 500);
+      this.setState({ intervalHandler: newHandler });
+    }
+  }
+
+  update() {
+    console.log("beep!");
   }
 
   render() {
