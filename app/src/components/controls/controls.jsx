@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import throttle from 'lodash/throttle';
+import debounce from 'lodash/debounce';
 
 import defaultControls from '../../util/defaultControls';
 
@@ -8,17 +8,17 @@ class Controls extends Component {
     super(props);
     this.state = defaultControls;
 
-    this.updateFrameTime = this.throttleMethod(
+    this.updateFrameTime = this.debounceMethod(
       this.updateFrameTime.bind(this),
       250
     );
 
-    this.ping = this.throttleMethod(
+    this.ping = this.debounceMethod(
       this.ping.bind(this),
       250
     );
 
-    this.togglePlay = this.throttleMethod(
+    this.togglePlay = this.debounceMethod(
       this.togglePlay.bind(this),
       250
     );
@@ -28,11 +28,11 @@ class Controls extends Component {
     this.props.setControls(this.state);
   }
 
-  throttleMethod(...args) {
-    const throttledMethod = throttle(...args);
+  debounceMethod(...args) {
+    const debouncedMethod = debounce(...args);
     return e => {
       e.persist();
-      return throttledMethod(e);
+      return debouncedMethod(e);
     };
   }
 
@@ -59,7 +59,7 @@ class Controls extends Component {
     return (num - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
   }
 
-  // Testing throttled methods
+  // Testing debounced methods
   ping() {
     console.log("ping");
   }
