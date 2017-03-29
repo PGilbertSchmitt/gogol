@@ -4,7 +4,7 @@ import Controls from './controls';
 import {
   receiveControls,
   resetControls
-} from '../actions/control-actions';
+} from '../../actions/control-actions';
 
 const mapStateToProps = ({ controls }) => ({
   controls

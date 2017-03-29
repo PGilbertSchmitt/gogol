@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Cell from '../game/cell';
+import Cell from '../../game/cell';
 
 class Grid extends Component {
   constructor(props) {

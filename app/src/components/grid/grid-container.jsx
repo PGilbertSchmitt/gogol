@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Grid from './grid';
-import { toggleCell } from '../actions/grid-actions';
+import { toggleCell } from '../../actions/grid-actions';
 
 const mapStateToProps = state => ({
   grid: state.grid

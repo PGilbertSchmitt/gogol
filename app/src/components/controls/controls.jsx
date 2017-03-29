@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import defaultControls from '../util/defaultControls';
+import defaultControls from '../../util/defaultControls';
 
 class Controls extends Component {
   constructor(props) {
