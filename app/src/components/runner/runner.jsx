@@ -27,17 +27,25 @@ class Runner extends Component {
     });
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     const controls = this.state.controls;
     
     // Play / Pause
     const handler = this.state.intervalHandler;
+    // Playing and shouldn't be
     if (!controls.playing && handler) {
       window.clearInterval(handler);
       this.setState({ intervalHandler: null });
     }
+    // Not playing and should be
     if (controls.playing && !handler) {
-      const newHandler = window.setInterval(this.update, 500);
+      const newHandler = window.setInterval(this.update, controls.frameTime * 1000);
+      this.setState({ intervalHandler: newHandler });
+    }
+    // Playing and interval changed
+    if (controls.playing && prevState.controls.frameTime !== controls.frameTime) {
+      window.clearInterval(handler);
+      const newHandler = window.setInterval(this.update, controls.frameTime * 1000);
       this.setState({ intervalHandler: newHandler });
     }
   }
