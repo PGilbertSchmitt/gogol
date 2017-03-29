@@ -77,7 +77,6 @@ class Grid extends Component {
 
     let mouseX = Math.floor((e.clientX - xOffset - 2) / this.cellSize);
     let mouseY = Math.floor((e.clientY - yOffset - 2) / this.cellSize);
-    console.log(`x: ${mouseX}, y: ${mouseY}`);
 
     const cell = new Cell(mouseX, mouseY);
     this.props.toggle(cell);
