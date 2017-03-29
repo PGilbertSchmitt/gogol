@@ -11,7 +11,7 @@ const mapStateToProps = ({ controls }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setContols: controls => dispatch(receiveControls(controls)),
+  setControls: controls => dispatch(receiveControls(controls)),
   resetControls: () => dispatch(resetControls())
 });
 
