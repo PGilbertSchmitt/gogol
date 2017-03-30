@@ -8,8 +8,10 @@ import Runner from '../components/runner/runner-container';
 const Root = ({ store }) => (
   <Provider store={store}>
     <div>
-      <Controls />
-      <Grid />
+      <div className="root-page">
+        <Controls />
+        <Grid />
+      </div>
       <Runner />
     </ div>
   </Provider>

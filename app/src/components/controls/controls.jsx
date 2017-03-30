@@ -16,19 +16,23 @@ class Controls extends Component {
       250
     );
 
-    this.ping = this.debounceMethod(
-      this.ping.bind(this),
-      250
-    );
-
-    this.togglePlay = this.debounceMethod(
-      this.togglePlay.bind(this),
-      250
-    );
+    this.togglePlay = this.togglePlay.bind(this);  
 
     this.clearGrid = this.clearGrid.bind(this);
     this.playStatus = this.playStatus.bind(this);
     this.renderRules();
+  }
+
+  componentDidMount() {
+    // Keyboard controls
+    document.addEventListener("keydown", e => {
+      switch (e.key) {
+        case ' ':
+          e.preventDefault();
+          this.togglePlay();
+          break;
+      }
+    });
   }
 
   componentWillReceiveProps({ frameCount }) {
@@ -81,11 +85,6 @@ class Controls extends Component {
     return (num - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
   }
 
-  // Testing debounced methods
-  ping() {
-    console.log("ping");
-  }
-
   playStatus() {
     return this.state.controls.playing ? "Pause" : "Play";
   }
@@ -113,13 +112,13 @@ class Controls extends Component {
     return (
       <tr key={i}>
         <td>{i}</td>
-        <td>
+        <td className="check">
           <input 
             type="checkbox"
             defaultChecked={this.state.controls.rules.birth[i]}
             onChange={this.toggleRule(i, "birth")} />
         </td>
-        <td>
+        <td className="check">
           <input 
             type="checkbox"
             defaultChecked={this.state.controls.rules.survive[i]}
@@ -140,7 +139,7 @@ class Controls extends Component {
 
   render() {
     return (
-      <div>
+      <div className="controls">
         <h1>Controls</h1>
         <label>Speed: <br />
           <input
@@ -157,7 +156,6 @@ class Controls extends Component {
           type="button"
           value={this.playStatus()} />
         <p>Frame: {this.state.frameCount}</p>
-        <br />
         <input
           onClick={this.clearGrid}
           type="button"

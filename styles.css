@@ -898,5 +898,24 @@ there.
 /* Larger than tablet */
 /* Larger than desktop */
 /* Larger than Desktop HD */
+.root-page {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #6AB5B1; }
+
+.controls {
+  padding: 20px 30px;
+  text-align: center; }
+  .controls input[type="button"] {
+    background-color: #C5C9C6; }
+  .controls table td {
+    padding: 2px;
+    border: none; }
+  .controls table td.check {
+    box-sizing: border-box;
+    padding-top: 20px;
+    text-align: center;
+    text-align: center; }
 
 /*# sourceMappingURL=styles.css.map */

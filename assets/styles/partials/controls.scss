@@ -1,0 +1,23 @@
+.controls {
+  padding: 20px 30px;
+
+  text-align: center;
+
+  input[type="button"] {
+    background-color: $warm-grey;
+  }
+
+  table {
+    td {
+      padding: 2px;
+      border: none;
+    }
+
+    td.check {
+      box-sizing: border-box;
+      padding-top: 20px;
+      text-align: center;
+      text-align: center;
+    }
+  }
+}
