@@ -26,6 +26,20 @@ class Life {
       }
     });
 
+    // Survive
+    this.grid.forEach(cell => {
+      const possibleNeighbors = cell.neighbors();
+      let count = 0;
+      possibleNeighbors.forEach(coor => {
+        if (this.grid.has(this.pairToStr(coor))) {
+          count++;
+        }
+      });
+      if (this.survive[count]) {
+        newGrid.set(cell.val(), cell);
+      }
+    });
+
     return newGrid;
   }
 
