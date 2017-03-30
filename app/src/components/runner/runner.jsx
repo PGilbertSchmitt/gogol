@@ -6,6 +6,7 @@
  */
 
 import React, { Component } from 'react';
+import _ from 'lodash';
 
 import defaultControls from '../../util/defaultControls';
 import Life from '../../game/life';
@@ -17,15 +18,25 @@ class Runner extends Component {
       grid: new Map,
       controls: defaultControls,
       intervalHandler: null
-    }
+    };
+    this.life = new Life(
+      this.state.grid,
+      this.state.controls.rules.birth,
+      this.state.controls.rules.survive,
+      this.state.controls.rules.evolve
+    );
+    this.update = this.update.bind(this);
   }
 
   componentWillReceiveProps({ grid, controls }) {
-    console.log("Runner received update");
     this.setState({
       grid,
       controls
     });
+    
+    if (!_.isEqual(this.state.grid, grid)) {
+      this.life.grid = grid;
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -52,7 +63,10 @@ class Runner extends Component {
   }
 
   update() {
-    console.log("beep!");
+    if (this.life) {
+      const newGrid = this.life.generate();
+      this.props.updateGrid(newGrid);
+    }
   }
 
   render() {
