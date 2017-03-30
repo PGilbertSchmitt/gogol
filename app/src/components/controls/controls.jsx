@@ -28,6 +28,7 @@ class Controls extends Component {
 
     this.clearGrid = this.clearGrid.bind(this);
     this.playStatus = this.playStatus.bind(this);
+    this.renderRules();
   }
 
   componentWillReceiveProps({ frameCount }) {
@@ -52,7 +53,7 @@ class Controls extends Component {
       e.target.value,
       1,
       100,
-      2.0,
+      1.0,
       0.02
     );
     let controls = merge({}, this.state.controls);
@@ -89,32 +90,79 @@ class Controls extends Component {
     return this.state.controls.playing ? "Pause" : "Play";
   }
 
+  renderRules() {
+    const newRules = this.state.controls.rules;
+
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th># of neighbors</th>
+            <th>Birth</th>
+            <th>Survival</th>
+          </tr>
+        </thead>
+        <tbody>
+          {[0,1,2,3,4,5,6,7,8].map(i => this.renderRuleRow(i))}
+        </tbody>
+      </table>
+    );
+  }
+
+  renderRuleRow(i) {
+    return (
+      <tr key={i}>
+        <td>{i}</td>
+        <td>
+          <input 
+            type="checkbox"
+            checked={this.state.controls.rules.birth[i]}
+            onChange={this.toggleRule(i, "birth")} />
+        </td>
+        <td>
+          <input 
+            type="checkbox"
+            checked={this.state.controls.rules.survive[i]}
+            onChange={this.toggleRule(i, "survive")} />
+        </td>
+      </tr>
+    );
+  }
+
+  toggleRule(i, rule) {
+    return () => {
+      let newControls = merge({}, this.state.controls);
+      const rules = newControls.rules;
+      newControls.rules[rule][i] = !rules[rule][i];
+      this.setState({ controls: newControls });
+    };
+  }
+
   render() {
     return (
       <div>
         <h1>Controls</h1>
-        <form>
-          <label>Time between frame: <br />
-            <input
-              onChange={this.updateFrameTime}
-              name="frame-slider"
-              type="range"
-              min="1"
-              max="100"
-              defaultValue="1"  />
-          </label>
-          <br />
+        <label>Speed: <br />
           <input
-            onClick={this.togglePlay}
-            type="button"
-            value={this.playStatus()} />
-          <p>Frame: {this.state.frameCount}</p>
-          <br />
-          <input
-            onClick={this.clearGrid}
-            type="button"
-            value="Reset Grid" />
-        </form>
+            onChange={this.updateFrameTime}
+            name="frame-slider"
+            type="range"
+            min="1"
+            max="100"
+            defaultValue="1"  />
+        </label>
+        <br />
+        <input
+          onClick={this.togglePlay}
+          type="button"
+          value={this.playStatus()} />
+        <p>Frame: {this.state.frameCount}</p>
+        <br />
+        <input
+          onClick={this.clearGrid}
+          type="button"
+          value="Reset Grid" />
+        {this.renderRules()}
       </div>
     );
   }

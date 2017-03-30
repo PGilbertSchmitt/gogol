@@ -60,6 +60,11 @@ class Runner extends Component {
       const newHandler = window.setInterval(this.update, controls.frameTime * 1000);
       this.setState({ intervalHandler: newHandler });
     }
+
+    // Change rules
+    this.life.birth = controls.rules.birth;
+    this.life.survive = controls.rules.survive;
+    this.life.evolve = controls.rules.evolve;
   }
 
   update() {
