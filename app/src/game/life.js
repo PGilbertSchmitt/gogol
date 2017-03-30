@@ -15,8 +15,6 @@ class Life {
     const deadNeighborGrid = this.deadNeighbors(this.grid);
     deadNeighborGrid.forEach(cell => {
       const possibleNeighbors = cell.neighbors();
-      console.log(cell);
-      console.log(possibleNeighbors);
       const count = this.neighborCount(possibleNeighbors);
       if (this.birth[count]) {
         newGrid.set(cell.val(), cell);

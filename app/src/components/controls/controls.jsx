@@ -22,6 +22,9 @@ class Controls extends Component {
       this.togglePlay.bind(this),
       250
     );
+
+    this.clearGrid = this.clearGrid.bind(this);
+    this.playStatus = this.playStatus.bind(this);
   }
 
   componentDidUpdate() {
@@ -53,6 +56,11 @@ class Controls extends Component {
     this.setState({ playing });
   }
 
+  clearGrid() {
+    this.props.cleanGrid();
+    this.setState({ playing: false });
+  }
+
   mapSliderToTime(num, inMin, inMax, outMin, outMax) {
     num = Math.sqrt(num);
     inMax = Math.sqrt(inMax);
@@ -62,6 +70,10 @@ class Controls extends Component {
   // Testing debounced methods
   ping() {
     console.log("ping");
+  }
+
+  playStatus() {
+    return this.state.playing ? "Pause" : "Play";
   }
 
   render() {
@@ -82,10 +94,10 @@ class Controls extends Component {
           <input
             onClick={this.togglePlay}
             type="button"
-            value="Play/Pause" />
+            value={this.playStatus()} />
           <br />
           <input
-            onClick={this.props.cleanGrid}
+            onClick={this.clearGrid}
             type="button"
             value="Reset Grid" />
         </form>
