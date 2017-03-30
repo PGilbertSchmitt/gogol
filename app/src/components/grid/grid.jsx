@@ -6,11 +6,7 @@ class Grid extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      grid: props.grid || new Map,
-      centerX: 0,
-      centerY: 0,
-      shiftX: 0,
-      shiftY: 0
+      grid: props.grid || new Map
     };
     this.cellSize = 20;
     this.draw = this.draw.bind(this);
@@ -32,11 +28,6 @@ class Grid extends Component {
         .getBoundingClientRect();
     this.ctx.clearRect(0, 0, viewRect.width, viewRect.height);
 
-    const centerX = viewRect.width / 2 - (this.cellSize / 2 + 1);
-    const centerY = viewRect.height / 2 - (this.cellSize / 2 + 1);
-    this.setState({ centerX, centerY });
-
-    // this.drawLine(centerX, 0, centerX, viewRect.height);
     for (let i = 0; i < viewRect.width; i += this.cellSize) {
       this.drawLine(i, 0, i, viewRect.height);
     }
@@ -47,8 +38,8 @@ class Grid extends Component {
 
     // console.log(this.state.grid);
     this.state.grid.forEach(cell => {
-      let x = (cell.x * this.cellSize) + centerX;
-      let y = (cell.y * this.cellSize) + centerY;
+      let x = (cell.x * this.cellSize);
+      let y = (cell.y * this.cellSize);
       this.drawCell(x, y);
     });
   }
@@ -71,12 +62,10 @@ class Grid extends Component {
   }
 
   handleClick(e) {
-    let { top, left, width, height } = e.target.getBoundingClientRect();
-    const xOffset = left + (width / 2) - (this.cellSize / 2 + 1);
-    const yOffset = top + (height / 2) - (this.cellSize / 2 + 1);
+    let { top, left } = e.target.getBoundingClientRect();
 
-    let mouseX = Math.floor((e.clientX - xOffset - 2) / this.cellSize);
-    let mouseY = Math.floor((e.clientY - yOffset - 2) / this.cellSize);
+    let mouseX = Math.floor((e.clientX - left) / this.cellSize);
+    let mouseY = Math.floor((e.clientY - top) / this.cellSize);
 
     const cell = new Cell(mouseX, mouseY);
     this.props.toggle(cell);
