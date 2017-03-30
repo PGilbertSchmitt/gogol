@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import debounce from 'lodash/debounce';
+import { debounce, merge } from 'lodash';
 
 import defaultControls from '../../util/defaultControls';
 
 class Controls extends Component {
   constructor(props) {
     super(props);
-    this.state = defaultControls;
+    this.state = {
+      controls: defaultControls,
+      frameCount: 0
+    };
 
     this.updateFrameTime = this.debounceMethod(
       this.updateFrameTime.bind(this),
@@ -28,7 +31,7 @@ class Controls extends Component {
   }
 
   componentDidUpdate() {
-    this.props.setControls(this.state);
+    this.props.setControls(this.state.controls);
   }
 
   debounceMethod(...args) {
@@ -48,17 +51,22 @@ class Controls extends Component {
       2.0,
       0.02
     );
-    this.setState({ frameTime: val });
+    let controls = merge({}, this.state.controls);
+    controls.frameTime = val;
+    this.setState({ controls });
   }
 
   togglePlay() {
-    let playing = !this.state.playing;
-    this.setState({ playing });
+    let controls = merge({}, this.state.controls);
+    controls.playing = !controls.playing;
+    this.setState({ controls });
   }
 
   clearGrid() {
     this.props.cleanGrid();
-    this.setState({ playing: false });
+    let controls = merge({}, this.state.controls);
+    controls.playing = false;
+    this.setState({ controls });
   }
 
   mapSliderToTime(num, inMin, inMax, outMin, outMax) {
@@ -73,7 +81,7 @@ class Controls extends Component {
   }
 
   playStatus() {
-    return this.state.playing ? "Pause" : "Play";
+    return this.state.controls.playing ? "Pause" : "Play";
   }
 
   render() {
@@ -95,6 +103,7 @@ class Controls extends Component {
             onClick={this.togglePlay}
             type="button"
             value={this.playStatus()} />
+          <p>Frame: </p>
           <br />
           <input
             onClick={this.clearGrid}
