@@ -1,7 +1,8 @@
 class Cell {
-  constructor(x, y) {
+  constructor(x, y, state = 1) {
     this.x = x;
     this.y = y;
+    this.state = state;
   }
 
   val() {
