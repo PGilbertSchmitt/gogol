@@ -12,14 +12,14 @@ class Cell {
   neighbors() {
     // Entire set of possibilities from moore neighborhood
     return [
-      `${this.x + 1}, ${this.y + 1}`,
-      `${this.x    }, ${this.y + 1}`,
-      `${this.x - 1}, ${this.y + 1}`,
-      `${this.x - 1}, ${this.y    }`,
-      `${this.x - 1}, ${this.y - 1}`,
-      `${this.x    }, ${this.y - 1}`,
-      `${this.x + 1}, ${this.y - 1}`,
-      `${this.x + 1}, ${this.y    }`
+      { x: this.x + 1, y: this.y + 1},
+      { x: this.x    , y: this.y + 1},
+      { x: this.x - 1, y: this.y + 1},
+      { x: this.x - 1, y: this.y    },
+      { x: this.x - 1, y: this.y - 1},
+      { x: this.x    , y: this.y - 1},
+      { x: this.x + 1, y: this.y - 1},
+      { x: this.x + 1, y: this.y    }
     ];
   }
 }
