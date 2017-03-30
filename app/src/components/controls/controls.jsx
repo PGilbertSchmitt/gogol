@@ -116,13 +116,13 @@ class Controls extends Component {
         <td>
           <input 
             type="checkbox"
-            checked={this.state.controls.rules.birth[i]}
+            defaultChecked={this.state.controls.rules.birth[i]}
             onChange={this.toggleRule(i, "birth")} />
         </td>
         <td>
           <input 
             type="checkbox"
-            checked={this.state.controls.rules.survive[i]}
+            defaultChecked={this.state.controls.rules.survive[i]}
             onChange={this.toggleRule(i, "survive")} />
         </td>
       </tr>
