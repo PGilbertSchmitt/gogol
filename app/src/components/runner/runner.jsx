@@ -8,6 +8,7 @@
 import React, { Component } from 'react';
 
 import defaultControls from '../../util/defaultControls';
+import Life from '../../game/life';
 
 class Runner extends Component {
   constructor(props) {
