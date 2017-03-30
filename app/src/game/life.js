@@ -1,7 +1,7 @@
 import Cell from './cell';
 
 class Life {
-  constructor(grid, birth, survive, evolve) {
+  constructor(grid, birth = {}, survive = {}, evolve = {}) {
     this.grid = grid;
     this.birth = birth;
     this.survive = survive;
