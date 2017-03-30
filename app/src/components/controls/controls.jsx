@@ -30,6 +30,10 @@ class Controls extends Component {
     this.playStatus = this.playStatus.bind(this);
   }
 
+  componentWillReceiveProps({ frameCount }) {
+    this.setState({ frameCount });
+  }
+
   componentDidUpdate() {
     this.props.setControls(this.state.controls);
   }
@@ -64,6 +68,7 @@ class Controls extends Component {
 
   clearGrid() {
     this.props.cleanGrid();
+    this.props.resetCount();
     let controls = merge({}, this.state.controls);
     controls.playing = false;
     this.setState({ controls });
@@ -103,7 +108,7 @@ class Controls extends Component {
             onClick={this.togglePlay}
             type="button"
             value={this.playStatus()} />
-          <p>Frame: </p>
+          <p>Frame: {this.state.frameCount}</p>
           <br />
           <input
             onClick={this.clearGrid}

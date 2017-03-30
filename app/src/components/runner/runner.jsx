@@ -66,6 +66,8 @@ class Runner extends Component {
     if (this.life) {
       const newGrid = this.life.generate();
       this.props.updateGrid(newGrid);
+      
+      this.props.stepCount();
     }
   }
 
