@@ -12,15 +12,34 @@ class Cell {
   neighbors() {
     // Entire set of possibilities from moore neighborhood
     return [
-      { x: this.x + 1, y: this.y + 1},
-      { x: this.x    , y: this.y + 1},
-      { x: this.x - 1, y: this.y + 1},
-      { x: this.x - 1, y: this.y    },
-      { x: this.x - 1, y: this.y - 1},
-      { x: this.x    , y: this.y - 1},
-      { x: this.x + 1, y: this.y - 1},
-      { x: this.x + 1, y: this.y    }
+      this.wrapCoordinate({ x: this.x + 1, y: this.y + 1 }),
+      this.wrapCoordinate({ x: this.x, y: this.y + 1 }),
+      this.wrapCoordinate({ x: this.x - 1, y: this.y + 1 }),
+      this.wrapCoordinate({ x: this.x - 1, y: this.y }),
+      this.wrapCoordinate({ x: this.x - 1, y: this.y - 1 }),
+      this.wrapCoordinate({ x: this.x, y: this.y - 1 }),
+      this.wrapCoordinate({ x: this.x + 1, y: this.y - 1 }),
+      this.wrapCoordinate({ x: this.x + 1, y: this.y })
     ];
+  }
+
+  wrapCoordinate({ x, y }) {
+    const newCoor = {
+      x: this.bound(x, 50),
+      y: this.bound(y, 35)
+    };
+    // console.log(`${newCoor.x}, ${newCoor.y}`);
+    return newCoor;
+  }
+
+  bound(n, lim) {
+    if (n >= lim) {
+      return n - lim;
+    }
+    if (n < 0) {
+      return lim + n;
+    }
+    return n;
   }
 }
 
