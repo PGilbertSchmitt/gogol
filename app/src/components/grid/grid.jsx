@@ -79,8 +79,8 @@ class Grid extends Component {
         <canvas
           style={{ "border": "1px solid black" }}
           id="grid-canvas"
-          width="500"
-          height="300"
+          width="1000"
+          height="700"
           onMouseDown={this.handleClick}>
         </canvas>
       </div>
