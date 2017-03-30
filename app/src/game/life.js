@@ -15,12 +15,9 @@ class Life {
     const deadNeighborGrid = this.deadNeighbors(this.grid);
     deadNeighborGrid.forEach(cell => {
       const possibleNeighbors = cell.neighbors();
-      let count = 0;
-      possibleNeighbors.forEach(coor => {
-        if (this.grid.has(this.pairToStr(coor))) {
-          count++;
-        }
-      });
+      console.log(cell);
+      console.log(possibleNeighbors);
+      const count = this.neighborCount(possibleNeighbors);
       if (this.birth[count]) {
         newGrid.set(cell.val(), cell);
       }
@@ -29,12 +26,7 @@ class Life {
     // Survive
     this.grid.forEach(cell => {
       const possibleNeighbors = cell.neighbors();
-      let count = 0;
-      possibleNeighbors.forEach(coor => {
-        if (this.grid.has(this.pairToStr(coor))) {
-          count++;
-        }
-      });
+      const count = this.neighborCount(possibleNeighbors);
       if (this.survive[count]) {
         newGrid.set(cell.val(), cell);
       }
@@ -55,6 +47,16 @@ class Life {
       });
     });
     return deadNeighborGrid;
+  }
+
+  neighborCount(possibleNeighbors) {
+    let count = 0;
+    possibleNeighbors.forEach(coor => {
+      if (this.grid.has(this.pairToStr(coor))) {
+        count++;
+      }
+    });
+    return count;
   }
 
   pairToStr({ x, y }) {
