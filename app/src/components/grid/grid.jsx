@@ -8,7 +8,7 @@ class Grid extends Component {
     this.state = {
       grid: props.grid || new Map
     };
-    this.cellSize = 20;
+    this.cellSize = 15;
     this.draw = this.draw.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
@@ -80,8 +80,8 @@ class Grid extends Component {
         <canvas
           style={{ "border": "1px solid black" }}
           id="grid-canvas"
-          width="1000"
-          height="700"
+          width="1305"
+          height="900"
           onMouseDown={this.handleClick}>
         </canvas>
       </div>

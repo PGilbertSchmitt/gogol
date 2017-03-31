@@ -7490,8 +7490,8 @@ var Cell = function () {
           y = _ref.y;
 
       var newCoor = {
-        x: this.bound(x, 50),
-        y: this.bound(y, 35)
+        x: this.bound(x, 87),
+        y: this.bound(y, 60)
       };
 
       return newCoor;
@@ -28953,7 +28953,7 @@ var Grid = function (_Component) {
     _this.state = {
       grid: props.grid || new Map()
     };
-    _this.cellSize = 20;
+    _this.cellSize = 15;
     _this.draw = _this.draw.bind(_this);
     _this.handleClick = _this.handleClick.bind(_this);
     return _this;
@@ -29042,8 +29042,8 @@ var Grid = function (_Component) {
         _react2.default.createElement('canvas', {
           style: { "border": "1px solid black" },
           id: 'grid-canvas',
-          width: '1000',
-          height: '700',
+          width: '1305',
+          height: '900',
           onMouseDown: this.handleClick })
       );
     }

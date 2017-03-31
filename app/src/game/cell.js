@@ -25,10 +25,10 @@ class Cell {
 
   wrapCoordinate({ x, y }) {
     const newCoor = {
-      x: this.bound(x, 50),
-      y: this.bound(y, 35)
+      x: this.bound(x, 87),
+      y: this.bound(y, 60)
     };
-    
+
     return newCoor;
     // return { x, y };
   }
