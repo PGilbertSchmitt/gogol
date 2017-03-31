@@ -899,10 +899,19 @@ there.
 /* Larger than desktop */
 /* Larger than Desktop HD */
 .root-page {
+  background-color: #FFAAAA; }
+
+.game-section {
   display: flex;
   justify-content: space-around;
-  align-items: center;
-  background-color: #6AB5B1; }
+  align-items: center; }
+
+.splash {
+  padding: 50px; }
+  .splash a {
+    color: #7781A9; }
+  .splash a:hover {
+    color: #2F3D71; }
 
 .controls {
   padding: 20px 30px;

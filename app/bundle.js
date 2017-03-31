@@ -7489,12 +7489,13 @@ var Cell = function () {
       var x = _ref.x,
           y = _ref.y;
 
-      var newCoor = {
-        x: this.bound(x, 50),
-        y: this.bound(y, 35)
-      };
+      // const newCoor = {
+      //   x: this.bound(x, 50),
+      //   y: this.bound(y, 35)
+      // };
       // console.log(`${newCoor.x}, ${newCoor.y}`);
-      return newCoor;
+      // return newCoor;
+      return { x: x, y: y };
     }
   }, {
     key: "bound",
@@ -28504,6 +28505,10 @@ var _runnerContainer = __webpack_require__(135);
 
 var _runnerContainer2 = _interopRequireDefault(_runnerContainer);
 
+var _splash = __webpack_require__(331);
+
+var _splash2 = _interopRequireDefault(_splash);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Root = function Root(_ref) {
@@ -28513,10 +28518,11 @@ var Root = function Root(_ref) {
     { store: store },
     _react2.default.createElement(
       'div',
-      null,
+      { className: 'root-page' },
+      _react2.default.createElement(_splash2.default, null),
       _react2.default.createElement(
         'div',
-        { className: 'root-page' },
+        { className: 'game-section' },
         _react2.default.createElement(_controlsContainer2.default, null),
         _react2.default.createElement(_gridContainer2.default, null)
       ),
@@ -45136,6 +45142,63 @@ function symbolObservablePonyfill(root) {
 
 	return result;
 };
+
+/***/ }),
+/* 331 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(13);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Splash = function Splash() {
+  return _react2.default.createElement(
+    "div",
+    { className: "splash" },
+    _react2.default.createElement(
+      "h1",
+      null,
+      "Game of Life"
+    ),
+    _react2.default.createElement(
+      "p",
+      null,
+      _react2.default.createElement(
+        "a",
+        { href: "https://en.wikipedia.org/wiki/Conway's_Game_of_Life" },
+        "Conway's Game of Life"
+      ),
+      " is an example of a cellular automaton, where discrete \"cells\", or positions in space with a finite number of states, interact with each other based on a given set of rules. Every frame, the cells change based off of their neighbors."
+    ),
+    _react2.default.createElement(
+      "p",
+      null,
+      "Conway's version, devised in 1970, is only one such rule. Dead cells with 3 living neighbors come to life during the next frame, and living cells with 2 or 3 neighbors stay alive. However, there are many ways to determine which cells live or die."
+    ),
+    _react2.default.createElement(
+      "p",
+      null,
+      "Visit ",
+      _react2.default.createElement(
+        "a",
+        { href: "https://en.wikipedia.org/wiki/Life-like_cellular_automaton", target: "_blank" },
+        "this page"
+      ),
+      " for some possible options. My favorite is Seeds, where Birth is set to 2 and Survive is set to none (all cells die, but growth is explosive)."
+    )
+  );
+};
+
+exports.default = Splash;
 
 /***/ })
 /******/ ]);

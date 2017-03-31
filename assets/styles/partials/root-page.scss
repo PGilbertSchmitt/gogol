@@ -1,6 +1,21 @@
 .root-page {
+  background-color: $background;
+}
+
+.game-section {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: $teal;
+}
+
+.splash {
+  padding: 50px;
+
+  a {
+    color: $link;
+  }
+  
+  a:hover {
+    color: $link-hover;
+  }
 }
