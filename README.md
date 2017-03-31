@@ -2,6 +2,8 @@
 
 Not related to Google
 
+[Live](https://pgilbertschmitt.github.io/gogol/)
+
 ## The original Game of Life
 
 [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway's_Game_of_Life) is an example of a cellular automaton, where discrete "cells", or positions in space with a finite number of states, interact with each other based on a given set of rules. Conway's version, devised in 1970, involves an infinite grid (though that can vary), and each cell only has two states: on and off (aka living and dead). The rules are simple. Every generation:  
