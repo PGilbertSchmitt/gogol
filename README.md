@@ -61,4 +61,5 @@ The runner component is the one responsible for using the life object to calcula
 The controls are very simple, as to not overwhelm the user. The user can decide:  
 - Start, Pause, Reset
 - The render speed
+- The rules (Who's born, and who survives)
 - The configuration of the grid at any step
