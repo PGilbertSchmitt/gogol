@@ -916,8 +916,10 @@ there.
 .controls {
   padding: 20px 30px;
   text-align: center; }
-  .controls input[type="button"] {
-    background-color: #C5C9C6; }
+  .controls input[type="button"],
+  .controls input[type="button"]:hover {
+    background-color: #C5C9C6;
+    border-color: #1E1E24; }
   .controls table td {
     padding: 2px;
     border: none; }
