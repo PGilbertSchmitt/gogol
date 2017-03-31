@@ -16,20 +16,21 @@ Conway's Game of Life has always been intriguing to me. However, it is only a si
 
 ## Design
 
-GoGoL uses a front-end only design, where the logic is written in JavaScript. It uses the following frontend technologies:  
+GoGoL will use a front-end only design, where the logic is written in JavaScript. It will use the following frontend technologies:  
 - Vanilla JS to handle the generation logic
+- EaselJS to manage the grid display
 - React-Redux to store the cell states and control data
 - Webpack to bundle the JS into a single file
-- Sass to bundle the CSS into a single file
 
-In order to simplify the calculations, the entire grid is not stored. Rather, only the cells which are alive for any given generation are stored via their cooridinates. Every game-tick, the living cells are retrieved, then the next generation is constructed based on the decided set of rules. The cells are clickable when paused, allowing the user to change the configuration.
+In order to simplify the calculations, the entire grid is not stored. Instead, only the cells which are alive for any given generation are stored via their cooridinates. Every game-tick, the living cells are retrieved, then the next generation is constructed based on the decided set of rules. The cells are clickable when paused, allowing the user to change the configuration.
 
 ### Major components
 
-`grid.jsx`: React component that handles rendering of the grid
+`grid.js`: Handles rendering of the grid, and transformation inputs (zoom, pan)
 `cell.js`: The class responsible for containing state information for a single cell, and performing neighbor calculations.
-`runner.jsx`: React component that doesn't render, but connects to the store to provide `life.js` with grid information, and handles render timing.
 `life.js`: The logic responsible for calculating the next state from the current state.
+
+![GoGoL page wireframe](./docs/wireframes/gogol.png)
 
 ## Rules
 
@@ -37,28 +38,47 @@ Each cell has eight possible neighbor cells. These are the cells located directl
 
 These rules based off of birth and survival, which can easily be written in a special notation in the style of `Bx/Sy`, where the `B` stands for birth, and the `S` stands for survival. The `x` and `y` can be any distinct digits between 0 and 8, and represent the number of neighbors a cell must have for either condition to be true. Any dead candidate cell must have an `x` number of neighbors to be alive, and a living cell must have a `y` number of neighbors to stay alive. Using this notation, any arbitrary ruleset can be established. For example, Conway's version is denoted by the rule `B3/S23`. Allowing a user to choose their own notation is thus trivial.
 
-## Engineering Challenges
-
-### Calculating Frames
-
-In order to transform this into code, several steps were necessary. In the beginning, there is a single Map, which maps coordinate strings to Cell objects. It not only keeps access to all living cells, but provides O(n) lookup by acting as a hash set. The calculation is as follows:
-
-- Create a new Map (`newGeneration`)
-- For every cell in the Map (`grid`), all neighbor coordinates are determined.
-  - Any coordinate that's already in the grid increments the count for that cell
-    - If that count has a true value in the `survive` object, it's added to the `newGeneration`
-  - Any coordinate that's not already in the grid is added to a new Map (`deadNeighbors`)
-- For every cell in `deadNeighbors`, all neighbor coordinates are determined.
-  - Any coordinate that's in the grid increments the count for that cell
-    - If that cound has a true value in the `birth` object, it's added to the newGeneration
-
-### Determining Render Times
-
-The runner component is the one responsible for using the life object to calculate grid procession, but also manages the timing. The life object uses a `generate()` function to do all calculations at once, which is performed in the runner's `update()` function. When the runner receives new controls through it's props, it determines whether it should start playing. If it should begin playing, it uses `setInterval()` with `update()` as the callback and the `frameTime` in controls as the interval. The handler that returns from `setInterval()` is stored. When it determines that it's time to pause, it calls `clearInterval()` with the saved handler, stopping the update from running.
-
 ## Controls
 
 The controls are very simple, as to not overwhelm the user. The user can decide:  
 - Start, Pause, Reset
+- The ruleset (from some predefined sets, as well as a custom option)
+- Predefined starting states
 - The render speed
-- The configuration of the grid at any step
+- The topology:
+  - Infinite plane
+  - Limited plane
+  - Torus  
+
+## Timeline
+
+### Day 1: Learning and Setup
+
+- Setup node modules, webpack, react-redux scaffolding, basic versions of major components.
+- Figure out how EaselJS works and how it will be used inside of the grid component.
+- Goals:
+  - Get a single working bundle file
+  - Use EaselJS to draw a simple object, and maybe figure out how to manipulate the canvas using the middle mouse button
+
+### Day 2: Grids and Cells
+
+- Build a working grid/cell model that can calculate any cell's state and its number of neighbors.
+- Design Easel environment to render cells in the grid
+- Goals:
+  - Clickable (toggleable) grid squares.
+
+### Day 3: Living and Dying
+
+- Design and implement the logic that determines which cells live or die
+- Provide ample access to change each setting.
+- Goals:
+  - Canvas shows cells living and dying (given appropriate rules)
+
+### Day 4: Prettification and Control
+
+- Design page and control panel
+- Allow simulation to be run, paused, or reset
+- Make everything pretty
+- Goals:
+  - Everything is pretty
+  - Rules are toggleable
