@@ -900,6 +900,8 @@ there.
 /* Larger than Desktop HD */
 .root-page {
   background-color: #FFAAAA; }
+  .root-page h1 {
+    font-family: "Montserrat", sans-serif; }
 
 .game-section {
   display: flex;

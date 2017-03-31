@@ -1,5 +1,9 @@
 .root-page {
   background-color: $background;
+
+  h1 {
+    font-family: $sans-bold;
+  }
 }
 
 .game-section {
