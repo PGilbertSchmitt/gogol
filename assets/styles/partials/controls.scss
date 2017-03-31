@@ -9,6 +9,52 @@
     border-color: $black;
   }
 
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 1px solid $black;
+    height: 20px;
+    width: 16px;
+    border-radius: 2px;
+    background: $white;
+    cursor: pointer;
+    margin-top: -8px;
+    box-shadow: 1px 1px 1px $black, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+  }
+
+  input[type=range]::-moz-range-thumb {
+    box-shadow: 1px 1px 1px $black, 0px 0px 1px #0d0d0d;
+    border: 1px solid $black;
+    height: 20px;
+    width: 16px;
+    border-radius: 2px;
+    background: $white;
+    cursor: pointer;
+  }
+
+  input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px $black, 0px 0px 1px #0d0d0d;
+  background: #3071a9;
+  border-radius: 3px;
+  border: 0.2px solid #010101;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #367ebd;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #3071a9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+
   table {
     td {
       padding: 2px;
