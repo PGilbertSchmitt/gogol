@@ -7489,13 +7489,13 @@ var Cell = function () {
       var x = _ref.x,
           y = _ref.y;
 
-      // const newCoor = {
-      //   x: this.bound(x, 50),
-      //   y: this.bound(y, 35)
-      // };
-      // console.log(`${newCoor.x}, ${newCoor.y}`);
-      // return newCoor;
-      return { x: x, y: y };
+      var newCoor = {
+        x: this.bound(x, 50),
+        y: this.bound(y, 35)
+      };
+
+      return newCoor;
+      // return { x, y };
     }
   }, {
     key: "bound",

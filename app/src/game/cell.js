@@ -24,13 +24,13 @@ class Cell {
   }
 
   wrapCoordinate({ x, y }) {
-    // const newCoor = {
-    //   x: this.bound(x, 50),
-    //   y: this.bound(y, 35)
-    // };
-    // console.log(`${newCoor.x}, ${newCoor.y}`);
-    // return newCoor;
-    return { x, y };
+    const newCoor = {
+      x: this.bound(x, 50),
+      y: this.bound(y, 35)
+    };
+    
+    return newCoor;
+    // return { x, y };
   }
 
   bound(n, lim) {
