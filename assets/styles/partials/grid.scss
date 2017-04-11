@@ -1,3 +1,11 @@
 .grid {
-  
+  display: block;
+  border: 1px solid black;
+  padding: 40px;
+  width: fit-content;
+  margin: 0 auto;
+
+  canvas {
+    border: 1px solid $black;
+  }
 }

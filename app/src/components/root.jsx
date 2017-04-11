@@ -10,10 +10,11 @@ const Root = ({ store }) => (
   <Provider store={store}>
     <div className="root-page">
       <Splash />
+      <div className="backdrop"></div>
       <div className="game-section">
-        <Controls />
-        <Grid />
-      </div>
+          <Controls />
+          <Grid />
+        </div>
       <Runner />
     </ div>
   </Provider>

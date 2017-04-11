@@ -1,7 +1,35 @@
 .controls {
   padding: 20px 30px;
+  box-sizing: border-box;
+  width: 100%;
 
   text-align: center;
+
+  .controls-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .board-controls {
+      width: 200px;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    .frame-controls {
+      width: 170px;
+    }
+
+    .rule-controls {
+      width: 500px;
+
+      table {
+        margin: 0 auto;
+      }
+    }
+  }
+
+  // Input styles
 
   input[type="button"],
   input[type="button"]:hover {

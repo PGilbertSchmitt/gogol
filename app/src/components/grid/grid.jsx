@@ -75,10 +75,8 @@ class Grid extends Component {
     return (
       <div
         className="grid"
-        onLoad={() => this.draw()}
-        style={{ "padding": "40px" }}>
+        onLoad={() => this.draw()}>
         <canvas
-          style={{ "border": "1px solid black" }}
           id="grid-canvas"
           width="1305"
           height="900"

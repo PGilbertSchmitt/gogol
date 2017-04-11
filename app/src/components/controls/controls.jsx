@@ -16,16 +16,16 @@ class Controls extends Component {
       250
     );
 
-    this.togglePlay = this.togglePlay.bind(this);  
-
+    this.togglePlay = this.togglePlay.bind(this);
     this.clearGrid = this.clearGrid.bind(this);
     this.playStatus = this.playStatus.bind(this);
-    this.renderRules();
+    this.renderRules = this.renderRules.bind(this);
   }
 
   componentDidMount() {
-    // Keyboard controls
+    // Keyboard Controls
     document.addEventListener("keydown", e => {
+      // Open to more controls
       switch (e.key) {
         case ' ':
           e.preventDefault();
@@ -52,13 +52,13 @@ class Controls extends Component {
   }
 
   updateFrameTime(e) {
-    // Convert value from range of 1-100 into 2.0-.02;
+    // Convert value from range of 1-100 into 2.0-0.02 seconds
     const val = this.mapSliderToTime(
       e.target.value,
       1,
       100,
       1.0,
-      0.02
+      0.01
     );
     let controls = merge({}, this.state.controls);
     controls.frameTime = val;
@@ -90,42 +90,7 @@ class Controls extends Component {
   }
 
   renderRules() {
-    const newRules = this.state.controls.rules;
 
-    return (
-      <table>
-        <thead>
-          <tr>
-            <th># of neighbors</th>
-            <th>Birth</th>
-            <th>Survival</th>
-          </tr>
-        </thead>
-        <tbody>
-          {[0,1,2,3,4,5,6,7,8].map(i => this.renderRuleRow(i))}
-        </tbody>
-      </table>
-    );
-  }
-
-  renderRuleRow(i) {
-    return (
-      <tr key={i}>
-        <td>{i}</td>
-        <td className="check">
-          <input 
-            type="checkbox"
-            defaultChecked={this.state.controls.rules.birth[i]}
-            onChange={this.toggleRule(i, "birth")} />
-        </td>
-        <td className="check">
-          <input 
-            type="checkbox"
-            defaultChecked={this.state.controls.rules.survive[i]}
-            onChange={this.toggleRule(i, "survive")} />
-        </td>
-      </tr>
-    );
   }
 
   toggleRule(i, rule) {
@@ -137,30 +102,86 @@ class Controls extends Component {
     };
   }
 
+  renderRules() {
+    return (
+      <table>
+        <tbody>
+          <tr>
+            <th></th>
+            <th>0</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+          </tr>
+          {this.renderRuleRow("birth")}
+          {this.renderRuleRow("survive")}
+        </tbody>
+      </table>
+    );
+  }
+
+  renderRuleRow(rule) {
+    const ruleNums = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+
+    return (
+      <tr key={rule}>
+        <td>{rule === "birth" ? "Birth" : "Survival"}</td>
+        {ruleNums.map(i => (
+          <td className="check">
+            <input
+              type="checkbox"
+              defaultChecked={this.state.controls.rules[rule][i]}
+              onChange={this.toggleRule(i, rule)} />
+          </td>
+        ))}
+      </tr>
+    );
+  }
+
   render() {
     return (
       <div className="controls">
         <h1>Controls</h1>
-        <label>Speed: <br />
-          <input
-            onChange={this.updateFrameTime}
-            name="frame-slider"
-            type="range"
-            min="1"
-            max="100"
-            defaultValue="1"  />
-        </label>
-        <br />
-        <input
-          onClick={this.togglePlay}
-          type="button"
-          value={this.playStatus()} />
-        <p>Frame: {this.state.frameCount}</p>
-        <input
-          onClick={this.clearGrid}
-          type="button"
-          value="Reset Grid" />
-        {this.renderRules()}
+        <div className="controls-box">
+          <div className="board-controls">
+            <input
+              className="primary-button u-full-width"
+              onClick={this.togglePlay}
+              type="button"
+              value={this.playStatus()} />
+            
+            <br />
+
+            <input
+              className="primary-button u-full-width"
+              onClick={this.clearGrid}
+              type="button"
+              value="Reset Grid" />
+          </div>
+
+          <div className="frame-controls">
+            <label>Speed: <br />
+              <input
+                onChange={this.updateFrameTime}
+                name="frame-slider"
+                type="range"
+                min="1"
+                max="100"
+                defaultValue="1" />
+            </label>
+            
+            <p>Frame: {this.state.frameCount}</p>
+          </div>
+
+          <div className="rule-controls">
+            {this.renderRules()}
+          </div>
+        </div>
       </div>
     );
   }
