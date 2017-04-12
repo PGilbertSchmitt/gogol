@@ -2,5 +2,3 @@ node_modules/
 .vscode/
 ignore/
 .sass-cache/
-styles.css*
-app/bundle.js*
