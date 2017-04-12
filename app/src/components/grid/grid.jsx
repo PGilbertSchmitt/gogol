@@ -76,6 +76,7 @@ class Grid extends Component {
       <div
         className="grid"
         onLoad={() => this.draw()}>
+        <h4>Click on any cells to toggle them, then press play (or hit spacebar)</h4>
         <canvas
           id="grid-canvas"
           width="1305"

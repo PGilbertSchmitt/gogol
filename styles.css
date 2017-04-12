@@ -928,6 +928,8 @@ there.
   padding: 40px;
   width: fit-content;
   margin: 0 auto; }
+  .grid h4 {
+    text-align: center; }
   .grid canvas {
     border: 1px solid #1E1E24; }
 

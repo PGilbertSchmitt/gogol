@@ -29080,6 +29080,11 @@ var Grid = function (_Component) {
           onLoad: function onLoad() {
             return _this3.draw();
           } },
+        _react2.default.createElement(
+          'h4',
+          null,
+          'Click on any cells to toggle them, then press play (or hit spacebar)'
+        ),
         _react2.default.createElement('canvas', {
           id: 'grid-canvas',
           width: '1305',

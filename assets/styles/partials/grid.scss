@@ -5,6 +5,10 @@
   width: fit-content;
   margin: 0 auto;
 
+  h4 {
+    text-align: center;
+  }
+
   canvas {
     border: 1px solid $black;
   }
